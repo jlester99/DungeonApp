@@ -13,14 +13,15 @@ namespace DungeonApplication
     {
         static void Main(string[] args)
         {
-            string txt = "Zombie Slayer";
+            string txt = "ZOMBIE SLAYER!!!!";
             Console.Title = txt;
 
             //centering text in the console window
             Console.WriteLine("{0," +
                 ((Console.WindowWidth / 2) + txt.Length / 2) + "}", txt);
 
-            Console.WriteLine("Welcome to the Apocolypse!  Your Journey starts now....\n");
+            Console.WriteLine("Welcome to the Apocolypse!  You will be sent into rooms where Zombies are known to be lurking about.  Once inside, you must use your assigned weapon to try to inflict damage to their brain which will kill them.  If you do enough damage, victory will be yours!  But, if you don't...well...you know what will happen!!\n" +
+                "You can click on the Player Info or Zombie Info in the menu below anytime you need to see the details. Player Info will also show you the weapon that was chosen as randome for you.\nYour journey begins when you choose an option below....Best of luck to you!!\n");
 
             int score = 0;
 
@@ -74,12 +75,20 @@ namespace DungeonApplication
                 "This male zombie is a young adult and has blue eyes, a dark complexion, and curly golden-blond hair in a mid-length ponytail.  He is short, of average weight, and is dressed very modestly.  He is quite fresh and is missing both arms and both ears.", false);
 
                 Child z9 = new Child(); //uses default ctor "Bony"
+                Child z10 = new Child("Hunter", 25, 25, 40, 15, 2, 8,
+                "This male zombie is a child and has green eyes, a pale complexion, and wavy platinum blond hair in a short braid.  He is of average height, quite muscular, and is wearing old fashioned clothing.  He is a bit decayed and is missing both legs and both eyes.", false);
+                Child z11 = new Child("Blazer", 25, 25, 40, 15, 2, 8,
+                "This female zombie is a child and has green eyes, a fair complexion, and curly platinum blond hair cut short.  She is tall, quite heavy, and is wearing very little clothing to speak of.  She is extremely decayed and is missing an arm and an ear.", false);
+                Child z12 = new Child("Chomper", 25, 25, 40, 15, 2, 8,
+                "This male zombie is a child and has brown eyes, a pale complexion, and curly platinum blond hair cut short.  He is short, of average weight, and is wearing old fashioned clothing.  He is a bit decayed and is missing several fingers, a leg, and both ears.", false);
+
+
 
                 //Since all of our child class zombies are all of the type Zombie, we 
                 //can store them in an array of type Zombie.
                 //Zombie[] zombies = { z1, z1, z2, z1, z2, z2, z1, z5, z6, z6, z1, z5, z5, z6 };
 
-                Zombie[] zombieWork = { z1, z2, z3, z4, z5, z6, z7, z8, z9 };
+                Zombie[] zombieWork = { z1, z2, z3, z4, z5, z6, z7, z8, z9, z10, z11 };
                 Zombie[] populateZombie = new Zombie[100];
                 //Zombie[] zombieWork = { z1, z2, z3, z4, z5, z6, z7, z8, z9, z10 };
                 ////string[] zombieChoices;
@@ -131,7 +140,7 @@ X) Exit
                                 //player get some items, heal a bit, or exp
                                 //due to defeating the zombie.
                                 Console.ForegroundColor = ConsoleColor.Green;
-                                Console.WriteLine("\n {0} killed {1}!\n", player.Name, useZombie.Name);
+                                Console.WriteLine("\n {0} slayed {1}!\n", player.Name, useZombie.Name);
                                 Console.ResetColor();
                                 reload = true;//new room and zombie
                                 score++;
@@ -178,7 +187,7 @@ X) Exit
                     //16. Check Player Life
                     if (player.Life <= 0)
                     {
-                        Console.WriteLine("\nSorry, Zombie Slayer... you will soon be joining the Zombies!!!\a");
+                        Console.WriteLine("\nSorry, " + player.Name +", your days as a Zombie Slayer are over..." + useZombie.Name + " slayed you!!!\a");
                         exit = true;
                     }//end if player is dead!
 
@@ -188,7 +197,7 @@ X) Exit
             } while (!exit);//While exit is NOT TRUE, keep looping
 
             Console.WriteLine($"" +
-                $"You defeated {score:n0} zombie{(score == 1 ? "." : "s.")}");
+                $"You defeated {score:n0} Zombie{(score == 1 ? "." : "s.")}");
 
         }//end Main()
 
@@ -207,17 +216,6 @@ X) Exit
                 "This large chamber has murals of exquisite beauty covering the walls, depicting landscapes, animals and half human gods. A number of life like statutes stand about the room, in poses of surprise, terror or grim determination. A heavy blue curtain with yellow stars hangs upon the far wall.",
                 "This cramped, rectangular bedroom has mismatched wooden and glass furniture.  The floor is wood and the walls are painted and decorated with a wallpaper border.  Light is provided by ceiling lights.  The room is done in cool dark colors and overall almost looks extraterrestrial."
             };
-            //MINI-LAB
-            //Finish the string array, and return one of the room descriptions.
-            //Random rand = new Random();
-
-            //int indexNbr = rand.Next(rooms.Length);
-
-            //string room = rooms[indexNbr];
-
-            //return room;
-
-            //refactored
             return rooms[new Random().Next(rooms.Length)];
             
         }
@@ -240,24 +238,6 @@ X) Exit
                   return weapons[new Random().Next(weapons.Length)];
         }//GetWeapon()
         
-
-        //private static string GetZombie()
-        //{
-        //    string[] zombies =
-        //    {
-        //        "This female zombie is middle-aged and has brown eyes, an olive complexion, and wavy blond hair cut short.  She is very tall, of average weight, and is wearing old fashioned clothing.  She is extremely decayed and is missing an arm, both legs, and half a face.",
-        //        "This male zombie is a teenager and has dark brown eyes, a dark complexion, and curly dark brown hair cut short.  He is a little tall, quite heavy, and is wearing very colorful clothing.  He is extremely decayed and is missing both arms, a leg, and both eyes.",
-        //        "This female zombie is elderly and has gray eyes, an olive complexion, and straight red hair worn loose about the shoulders.  She is a little tall, of average weight, and is wearing a slogan shirt.  She is extremely decayed and is missing several fingers and half a face.",
-        //        "This male zombie is a teenager and has brown eyes, a pale complexion, and wavy light brown hair left uncut.  He is of average height, quite muscular, and is wearing old fashioned clothing.  He is extremely decayed and is missing an arm and both legs.",
-        //        "This female zombie is a child and has dark brown eyes, a dark complexion, and wavy light brown hair left uncut.  She is short, quite heavy, and is wearing a slogan shirt.  She is a bit decayed and is missing both legs and an earn",
-        //        "This male zombie is an adult and has blue eyes, an olive complexion, and wavy dull blond hair worn short.  He is short, somewhat thin, and is wearing a slogan shirt.  He is quite fresh and is missing an arm, a leg, and the nose.",
-        //        "This male zombie is elderly and has gray eyes, an olive complexion, and wavy blond hair worn long.  He is tall, of average weight, and is wearing very little clothing to speak of.  He is quite fresh and is missing both legs and both ears.",
-        //        "This female zombie is elderly and has green eyes, a fair complexion, and straight light brown hair left uncut.  She is a little tall, a bit pudgy, and is wearing outrageous clothing.  She is a bit decayed and is missing both arms and a leg.",
-        //        "This male zombie is an adult and has gray eyes, a fair complexion, and curly golden-blond hair neatly braided.  He is a little tall, fairly muscular, and is wearing very little clothing to speak of.  He is a bit decayed and is missing both arms and most of the face.",
-        //        "This male zombie is a child and has green eyes, a pale complexion, and wavy platinum blond hair in a short braid.  He is of average height, quite muscular, and is wearing old fashioned clothing.  He is a bit decayed and is missing both legs and both eyes." };
-        //    }; //end string 
-        //    return zombies[new Random().Next(zombies.Length)];
-
         #endregion
     }//end class
 }//end namespace
