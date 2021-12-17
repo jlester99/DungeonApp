@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F07B0079-2EC6-4330-AD4F-18D419472A08}</ProjectGuid>
+    <ProjectGuid>{1F7C1FC4-A84A-47E1-867F-B108E87B05B6}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Dungeon</RootNamespace>
-    <AssemblyName>Dungeon</AssemblyName>
+    <RootNamespace>DungeonZombie</RootNamespace>
+    <AssemblyName>DungeonZombie</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,6 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Child.cs" />
+    <Compile Include="Adult.cs" />
+    <Compile Include="Elder.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -53,10 +56,6 @@
     <ProjectReference Include="..\DungeonLibrary\DungeonLibrary.csproj">
       <Project>{1ec8cba3-d12a-46a1-a24b-b8c017ed04cf}</Project>
       <Name>DungeonLibrary</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DungeonZombie\DungeonZombie.csproj">
-      <Project>{1f7c1fc4-a84a-47e1-867f-b108e87b05b6}</Project>
-      <Name>DungeonZombie</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
