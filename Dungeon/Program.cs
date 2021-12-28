@@ -13,38 +13,215 @@ namespace DungeonApplication
     {
         static void Main(string[] args)
         {
-            string txt = "ZOMBIE SLAYER!!!!";
+            string txt = "ZOMBIE SLAYER!!!!\n";
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.Title = txt;
 
             //centering text in the console window
             Console.WriteLine("{0," +
                 ((Console.WindowWidth / 2) + txt.Length / 2) + "}", txt);
-
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Welcome to the Apocolypse!  You will be sent into rooms where Zombies are known to be lurking about.  Once inside, you must use your assigned weapon to try to inflict damage to their brain which will kill them.  If you do enough damage, victory will be yours!  But, if you don't...well...you know what will happen!!\n" +
                 "You can click on the Player Info or Zombie Info in the menu below anytime you need to see the details. Player Info will also show you the weapon that was chosen as randome for you.\nYour journey begins when you choose an option below....Best of luck to you!!\n");
 
             int score = 0;
 
             //1.Create a Random Weapon for the Player
-             string weaponRetrieved =GetWeapon();
+             string weaponRetrieved = GetWeapon();
+            string weaponPic = "";
 
-            Weapon useWeapon = new Weapon(1, 8, weaponRetrieved, 10, true);
+            Weapon useWeapon = new Weapon(1, 8, weaponRetrieved, 10, true, weaponPic);
 
             switch (weaponRetrieved)
             {
                 case "CrossBow":
                 case "Grenade":
-                case "Spear Gun":
                 case "Handgun":
                 case "Automatic Rifle":
                     useWeapon.IsCloseRangeRequired = false;
                     break;
             }
+            //add switch to populate weaponPic here
+            switch (weaponRetrieved)
+            {
+                case "CrossBow":
+                    useWeapon.weaponPic = @"
+           4  '^                                     
+           4    'b.                                   
+           4      $r
+           4       $F
+           4       *$$F
+           4        $$*                                  
+-$b ====== 4 =======$b ====*P=-
+           4       .$F
+           4       dP
+           4     *$$F
+           4     $F                                       
+           4  '$$";
 
-            //2. Create a Player
-            Player player = new Player("Leeroy Jenkins", 70, 5, 40, 10, ExperienceLevel.Novice, useWeapon );
+                    break;
+                case "Grenade":
+                    useWeapon.weaponPic = @"
+       \|/                          
+            `--+--'                        
+              /|\                          
+             ' | '                         
+               |                           
+           ,--'#`--.                       
+             ;BVIMMMMMt         
+        .=YRBBBMMMMMMMB          
+      =RMMMMMMMMMMMMMM;          
+    ;BMMR=VMMMMMMMMMMMV.         
+   tMMR::VMMMMMMMMMMMMMB:        
+ ;MMY ;MMMMMMMMMMMMMMMMMMV       
+ VMB +MMMMMMMMMMMMMMMMMMMM:      
+ ;MM+ BMMMMMMMMMMMMMMMMMMR       
+  tMBVBMMMMMMMMMMMMMMMMMB.       
+   tMMMMMMMMMMMMMMMMMMMB:        
+    ;BMMMMMMMMMMMMMMMMY          
+      +BMMMMMMMMMMMBY:           
+        :+YRBBBRVt";
+
+
+                    break;
+                case "Hammer":
+                    useWeapon.weaponPic = @"
+          - 
+       /  |
+     /    / 
+    /    /     
+   |      \                       _________________
+   |        |________...-----'''- - -  =- -  - = `.
+  /|        |        \-  =  -  -= - =  - =- =  - =|
+ ( |        |________/-  =  -  -= - =  - =- =  - =|
+   \|      /         ```-----..._________________.'
+     |    |   
+   ,-'    `-, 
+   |        | 
+   `--------'  
+";
+
+
+                    break;
+                case "Handgun":
+                    useWeapon.weaponPic = @"
++--^----------,--------,-----,--------^-,
+ | |||||||||   `--------'     |          O
+ `+---------------------------^----------|
+   `\_,---------,---------,--------------'
+     / XXXXXX /'|       /'
+    / XXXXXX /  `\    /'
+   / XXXXXX /`-------'
+  / XXXXXX /
+ / XXXXXX /
+(________(                
+ `------' 
+ ";
+                    break;
+                case "Automatic Rifle":
+                    useWeapon.weaponPic= @"
+   )|     ______________________.------,_                  _
+ _/o|_____/  ,__________.__;__,__,__,__,_Y...:::---===````//
+|==========\  ;  ;  ;  ; \__,__\__,_____ --__,-.\(=~\(=)\((
+           `--------|__,__/__,__/__/  )=))~((   '-\=(\&(~\\\
+                      \ ==== \          \\~~\\     \~~)[JW]\\
+                      `| === |           ))~~\\     ```- =,))
+                       | === |           | '---')
+                      / ==== /           `===== '
+";
+                    break;
+                case "Katana":
+                    useWeapon.weaponPic = @"
+  __-----________________{]____________________________________________
+{&&&&&&&#%%&#%&%&%&%&%#%&|]_____________________________________________\
+                         {]";
+                    break;
+                case "Machete":
+                    useWeapon.weaponPic = @"
+                                ___________________________
+                          _.-''`----------------------|`. |``''--..__
+                     _.-'` ' ' '' ' ' ' ' ' ' ' ' ' ' | : |          ``'';';--..__
+                _.-'`                                 | : |         '   :';       ```';
+           _.-'`                        ________/\_/\_|.'_|_       '   :';           /
+       _.-'                         _.-'`                    ``''--:.__;';           _|
+     .'`                        _.-'`                                     `'`''-._     /
+   .`                       _.-'                                                  `'-./
+ .'                    _.-'`
+/               __..-'`
+``'''----'''````";
+                    break;
+                case "Mace":
+                    useWeapon.weaponPic = @"
+|\
+        | \        /|
+        |  \____  / |
+       /|__/AMMA\/  |
+     /AMMMMMMMMMMM\_|
+ ___/AMMMMMMMMMMMMMMA
+ \   |MVKMMM/ .\MMMMM\
+  \__/MMMMMM\  /MMMMMM---
+  |MMMMMMMMMMMMMMMMMM|  /
+  |MMMM/. \MM.--MMMMMM\/
+  /\MMM\  /MM\  |MMMMMM   ___
+ /  |MMMMMMMMM\ |MMMMMM--/   \-.
+/___/MMMMMMMMMM\|M.--M/___/_|   \
+     \VMM/\MMMMMMM\  |      /\ \/
+      \V/  \MMMMMMM\ |     /_  /
+        |  /MMMV'   \|    |/ _/
+        | /              _/  /
+        |/              /| \'
+                       /_  /
+                       /  /
+";
+                    break;
+                case "Battle Axe":
+                    useWeapon.weaponPic= @"
+                             .g88888888888888888p.
+                           .d8888P""       ""Y8888b.
+                           ^Y8P^               ^Y8P'
+                              `.               ,'
+                               \      .-.    /
+                                \    (___)  /
+ .--------------.________________:__________j
+/               |               |           |`-.,_
+\###############|###############|###########|,-'`
+ `--------------'                :    ___   l
+                                 /   (   )   \
+                                /     `-'     \
+                               ,'               `.
+                           .d8b.               .d8b.
+                             ^Y88888888888888888P^
+                                ^^YY8888888PP^^
+";
+                    break;
+                case "Khukuri Knife":
+                    useWeapon.weaponPic = @"
+                                             |_  |
+                                               | |
+__                      ____                   | |
+\ ````''''----....____.'\   ````''''-----------| |--.               _____      .-.
+ :.                      `-._                  | |   `''-----''''```     ``''|`: :|
+  '::.                       `'--..____________| |                           | : :|
+    '::..       ----.....______________________| |                  _____    | : :|
+      `'-::..._________________________________| |   `''-----''''```     ``''|`: :|
+           ```'''------------------------------| |--'                         `'-'
+                                               | |
+                                              _| |
+                                              |__| 
+";
+                    break;
+
+                default:
+                    break;
+            }
+
+            //TODO 2. Add code here to randomly choose a player
+            //     2. Create one player
+                    Player player = new Player("Leeroy Jenkins", 70, 5, 40, 10, ExperienceLevel.Novice, useWeapon );
            
-            //TODO 3. Add Customization based on player weapon
+            //TODO 3. Add Customization based on player experience
+            //TODO 3.5. Add customization based on zombie speed
+            //TODO 3.75 Add customization based on weapon chosen
          
 
             //4. Create a loop for the room and zombie
@@ -55,9 +232,12 @@ namespace DungeonApplication
                 //enter the room
 
                 //5. Get a room description from a custom method that generates them
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine("------ ROOM INFORMATION-------:\n");
+                Console.ForegroundColor = ConsoleColor.White;
+
                 Console.WriteLine(GetRoom());
-                // 6. Create a zombie in the room for the Player to battle.
-                //Learn about creating objects and randomly selecting them
+                // 6. Create a zombie in the room for the Player to battle.  
                 Elder z1 = new Elder();//uses default ctor
                 Elder z2 = new Elder("Bloater", 25, 25, 40, 15, 2, 8,
                 "This female zombie is elderly and has gray eyes, an olive complexion, and straight red hair worn loose about the shoulders.  She is a little tall, of average weight, and is wearing a slogan shirt.  She is extremely decayed and is missing several fingers and half a face." ,false);
@@ -83,15 +263,11 @@ namespace DungeonApplication
                 "This male zombie is a child and has brown eyes, a pale complexion, and curly platinum blond hair cut short.  He is short, of average weight, and is wearing old fashioned clothing.  He is a bit decayed and is missing several fingers, a leg, and both ears.", false);
 
 
-
                 //Since all of our child class zombies are all of the type Zombie, we 
                 //can store them in an array of type Zombie.
-                //Zombie[] zombies = { z1, z1, z2, z1, z2, z2, z1, z5, z6, z6, z1, z5, z5, z6 };
 
                 Zombie[] zombieWork = { z1, z2, z3, z4, z5, z6, z7, z8, z9, z10, z11 };
                 Zombie[] populateZombie = new Zombie[100];
-                //Zombie[] zombieWork = { z1, z2, z3, z4, z5, z6, z7, z8, z9, z10 };
-                ////string[] zombieChoices;
 
                 for (int i = 0; i <= 99; i++)
                 {
@@ -107,6 +283,7 @@ namespace DungeonApplication
 
                 //Show that zombie in the room
                 //TODO  Add description of game
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\nBEWARE: In this room, "+ useZombie.Name + " lurks about!!");
 
                 //7. Create a loop for the user choice menu (inner loop)
@@ -114,6 +291,7 @@ namespace DungeonApplication
                 do
                 {
                     //8. Create a menu of options
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
                     Console.WriteLine(@"
 Please choose an action:
 A) Attack
@@ -127,6 +305,7 @@ X) Exit
 
                     Console.Clear();
                     //10. Perform an action based on the users input
+                    Console.ForegroundColor = ConsoleColor.Green;
                     switch (userChoice)
                     {
                         case "A":
@@ -140,6 +319,7 @@ X) Exit
                                 //player get some items, heal a bit, or exp
                                 //due to defeating the zombie.
                                 Console.ForegroundColor = ConsoleColor.Green;
+                                Console.Beep(523, 100);
                                 Console.WriteLine("\n {0} slayed {1}!\n", player.Name, useZombie.Name);
                                 Console.ResetColor();
                                 reload = true;//new room and zombie
@@ -161,6 +341,8 @@ X) Exit
                         case "P":
                             Console.WriteLine("Player Info:");
                             //14. Display Player info
+                            
+                            //Console.WriteLine("Weapon: " + useWeapon);
                             Console.WriteLine(player);
                             Console.WriteLine("Zombies slain: " + score);
                             break;
@@ -180,6 +362,7 @@ X) Exit
                             break;
 
                         default:
+                            Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("Thou hast chosen an invalid option.");
                             break;
                     }//end switch
@@ -187,7 +370,8 @@ X) Exit
                     //16. Check Player Life
                     if (player.Life <= 0)
                     {
-                        Console.WriteLine("\nSorry, " + player.Name +", your days as a Zombie Slayer are over..." + useZombie.Name + " slayed you!!!\a");
+                        Console.Beep(523, 100);
+                        Console.WriteLine("\nSorry, " + player.Name +", your days as a Zombie Slayer are over..." + useZombie.Name + " slayed YOU!!!\a");
                         exit = true;
                     }//end if player is dead!
 
@@ -224,11 +408,11 @@ X) Exit
         {
             string[] weapons =
             {
-                "Crossbow",
+                "CrossBow",
                 "Grenade",
                 "Katana",
-                "Slingshot",
-                "Barbed Wire Bat",
+                "Hammer",
+                "Handgun",
                 "Automatic Rifle",
                 "Machete",
                 "Mace",

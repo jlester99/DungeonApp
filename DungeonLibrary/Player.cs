@@ -109,7 +109,7 @@ namespace DungeonLibrary
             //outside of switch, return values
             return $"-=-= {Name} =-=-\n" +
                 $"Life: {Life} / {MaxLife}\n" +
-                $"Experience: {CharacterExperience}: {description}\n" + 
+                $"Experience: {CharacterExperience}: {description}\n" +
                 //$"Hit Chance: {CalcHitChance()}%\n" +
                 $"Hit Chance: {HitChance}%\n" +
                 $"Block: {Block}\n" +

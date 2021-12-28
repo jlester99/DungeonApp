@@ -16,6 +16,7 @@ namespace DungeonLibrary
         public string Name { get; set; }
         public int AdditionalHitChance { get; set; }
         public bool IsCloseRangeRequired { get; set; }
+        public string WeaponPic { get; set; }
 
         public int MinDamage
         {
@@ -37,21 +38,23 @@ namespace DungeonLibrary
 
 
         //collect / constructors (ctors)
-        public Weapon(int minDamage, int maxDamage, string name, int additionalHitChance, bool isCloseRangeReqired)
+        public Weapon(int minDamage, int maxDamage, string name, int additionalHitChance, bool isCloseRangeReqired, string weaponPic)
         {
             MaxDamage = maxDamage;
             MinDamage = minDamage;
             Name = name;
             IsCloseRangeRequired = isCloseRangeReqired;
+            WeaponPic = weaponPic;
         }//end FQ ctor  -- No default ctor required
 
-
+        public string weaponPic = "";
 
         //money / methods
 
         public override string ToString()
         {
-            return $"{Name}\n{(IsCloseRangeRequired ? ": Is not Capable of Long Range Hit" : "Is Capable of Long Range Hit")}\n"   +
+            return $"{Name}\n{(IsCloseRangeRequired ? "Weapon is not capable of long range hit" : "Weapon is capable of long range hit")}\n" +
+                $"{weaponPic}\n" +
                 $"{MinDamage} - {MaxDamage} Damage\n" +
                 $"Additional Hit: {AdditionalHitChance}%\t";
         }
